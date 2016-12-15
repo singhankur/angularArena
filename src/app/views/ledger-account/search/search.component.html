@@ -1,0 +1,46 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<!-- <h4 class="col-xs-10 modal-title" id="myModalLabel">LEDGER ACCOUNT SEARCH FORM</h4> -->
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"  (click)="close()"><span aria-hidden="true">&times;</span></button>
+	    	</div>
+	    	<div class="modal-body">
+
+	        	<section class="search-ledger-form" *ngIf="!showResults">
+	        		<p class="text-center"><strong>LEDGER ACCOUNT SEARCH FORM</strong></p>
+		        	<form [formGroup]="searchForm" (ngSubmit)="submitForm($event)">
+						<div class="search-fields">
+							<input type="text" formControlName="ledger_id" placeholder="Search by Ledger Id">
+							<input type="text" formControlName="name" placeholder="Search by name" ngText>
+							<input type="text" formControlName="fathersName" placeholder="Search by father's name" ngText>
+							<input type="text" formControlName="mobile" placeholder="Search by mobile number" ngNumber>
+							<input type="text" formControlName="address" placeholder="Search by address">
+							<div class="btn-wrapper">
+									<input type="submit" class="btn btn-black" value="SEARCH">
+							</div>
+						</div>
+					</form>
+				</section>
+				<!-- Search result -->
+				<div class="search-ledger-result" *ngIf="showResults">
+					<h1>Results showing for <span *ngIf="resultBasis.ledger_id">{{resultBasis.ledger_id}}, </span><span *ngIf="resultBasis.name">{{resultBasis.name}}, </span><span *ngIf="resultBasis.mobile">{{resultBasis.mobile}}, </span><span *ngIf="resultBasis.fathersName">{{resultBasis.fathersName}}, </span><span *ngIf="resultBasis.address">{{resultBasis.address}}</span></h1>
+					<div class="results-wrapper">
+						<div class="row" *ngFor="let response of searchResponse" (click)="goToLedgerAccount(response)">
+							<div class="detail-left">
+								<p><span class="field-label">Name:</span>{{response.name}}</p>
+								<p><span class="field-label">Father's name:</span>{{response.fathersName}}</p>
+								<p><span class="field-label">Ledger Id:</span>{{response.ledgerid}}</p>
+							</div>
+							<div class="detail-right">
+								<p><span class="field-label">Mobile:</span>{{response.mobile}}</p>
+								<p><span class="field-label">Address</span>{{response.address}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+	    	</div>
+	    	<div class="modal-footer footer-line"></div>
+    	</div>
+	</div>
+</div>

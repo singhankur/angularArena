@@ -1,0 +1,69 @@
+<section class="create-form">
+     <form [formGroup]="createKisanForm" *ngIf="!showMsg" (ngSubmit)="submitForm()">
+
+		<div class="form-field">
+			<a class="close" routerLink="/home"><span class="icon-cross">X</span></a>
+			<div class="form-control">
+				<input type="text" formControlName="slipNumber" required>
+				<label>Serial number</label>
+			</div>
+			<div class="form-control">
+				<input type="text" formControlName="name" required>
+				<label>name</label>
+			</div>
+			<div class="form-control">
+				<input type="text" formControlName="fatherName" required>
+				<label>father</label>
+			</div>
+<!-- 						<div class="form-control">
+				<input type="text" formControlName="fatherName">
+				<label>father</label>
+			</div> -->
+			<div class="form-control">
+				<input type="text" formControlName="address" required>
+				<label>address</label>
+			</div>
+			<div class="form-control">
+				<input type="number" formControlName="mobile">
+				<label>mobile</label>
+			</div>
+			<div class="form-control">
+				<input type="number" formControlName="noOfPacket" required>
+				<label>No. of packets</label>
+			</div>
+			<div class="form-control">
+				<input type="text" formControlName="lotNumber">
+				<label>Lott number</label>
+			</div>
+<!-- 
+			<div class="form-control">
+				<input type="number" formControlName="totalWeight">
+				<label>Total weight</label>
+			</div> -->
+			<div class="form-control">
+				<select formControlName="typeOfPotato" placeholder="Type of potato" required>
+					<option *ngFor="let color of potatoColors" value="{{color}}">{{color}}</option>
+				</select>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" formControlName="pickUpPriceSettled">
+				<label><strong>Pick up price settled</strong></label>
+			</div>
+	
+			<div class="form-control">
+				<input type="checkbox" formControlName="dropPriceSettled">
+				<label><strong>Down price settled</strong></label>
+			</div>
+			<div class="btn-wrapper">
+				<input type="submit" class="btn btn-black" value="SAVE">
+			</div>
+
+		</div>
+	</form>
+	<div class="overlay" *ngIf="showMsg">
+		<a class="close" routerLink="/home"><span class="icon-cross">X</span></a>
+		<p class="align-center">
+			{{responseMessage}}
+		</p>
+	</div>
+</section>

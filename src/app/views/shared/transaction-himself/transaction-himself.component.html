@@ -1,0 +1,60 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<h4 class="col-xs-10 modal-title" id="myModalLabel">TAKEN BY HIMSELF FORM</h4>
+	        	<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" routerLink="/home" *ngIf="!showMsg"><span aria-hidden="true">&times;</span></button> -->
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"  (click)="gotoUserAccount()"><span aria-hidden="true">&times;</span></button>
+	    	</div>
+	    	<div class="modal-body">
+	        	<section class="create-form">
+		        	<form class="form-horizontal create-transaction" [formGroup]="createTransactionForm" (ngSubmit)="submitForm($event)" *ngIf="!showMsg">
+		        		<div class="form-group">
+		        			<label for="packetsTaken" class="col-xs-12 col-sm-3 control-label">TOTAL PACKET TAKEN<!-- <strong>(Storage price per packet: {{_priceConst.storagePricePerPacket}})</strong> --></label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="packetsTaken"  name="packets_taken" formControlName="packetsTaken" required (keyup)="calculateTotalAmount()" ngNumber>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="totalStoragePrice" class="col-xs-12 col-sm-3 control-label">TOTAL STORAGE PRICE</label>
+						    <div class="col-xs-12 col-sm-9 padding-top-7">
+						    	<!-- <input type="text" class="form-control" id="totalStoragePrice" formControlName="name" required> -->
+						    	<span><strong>Rs. {{totalStoragePrice}}</strong></span>
+						    </div>
+						</div>
+						<div class="form-group" [ngClass]="{'disabled': dropPricesettled}">
+		        			<label for="totalDownPrice" class="col-xs-12 col-sm-3 control-label">TOTAL DOWN PRICE</label>
+						    <div class="col-xs-12 col-sm-9 padding-top-7">
+						    	<!-- <input type="text" class="form-control" id="totalDownPrice" formControlName="totalDownPrice" [(ngModel)]="dropPrice" [disabled]="downPriceSettled" name="total_down_price"  (change)="calculateTotalamount()"> -->
+						    	<span><strong>Rs. {{totalDropPrice}}</strong></span>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="totalAmount" class="col-xs-12 col-sm-3 control-label">TOTAL AMOUNT</label>
+						    <div class="col-xs-12 col-sm-9 padding-top-7">
+						    	<!-- <input type="number" class="form-control" id="totalAmount" formControlName="totalAmount"> -->
+						    	<span><strong>Rs. {{totalStoragePrice + totalDropPrice}}</strong></span>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="amountPaid" class="col-xs-12 col-sm-3 control-label">AMOUNT PAID</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="amountPaid" formControlName="amountPaid" required name="amountPaid">
+						    </div>
+						</div>
+						<div class="col-xs-12 btn-wrapper">
+							<input type="submit" class="btn btn-black" value="SAVE">
+						</div>
+						<p class="text-center">[Please Make Sure to check ledger account]</p>
+		        	</form>
+					<div *ngIf="showMsg">
+						<p class="align-center">
+							{{responseMessage}}
+						</p>
+					</div>
+				</section>
+	    	</div>
+	    	<div class="modal-footer footer-line"></div>
+    	</div>
+	</div>
+</div>

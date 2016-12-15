@@ -1,0 +1,45 @@
+<section class="search-modal" *ngIf="!showResults">
+	<a class="close" routerLink="/home"><span class="icon-cross">X</span></a>
+	<form [formGroup]="searchForm" (ngSubmit)="submitForm($event)">
+		<div class="search-fields">
+			<input type="text" formControlName="slipNumber" placeholder="Search by receipt">
+			<input type="text" formControlName="name" placeholder="Search by name">
+			<input type="text" formControlName="mobile" placeholder="Search by mobile number" ngNumber maxlength="10">
+			<input type="text" formControlName="fatherName" placeholder="Search by father's name">
+			<input type="text" formControlName="address" placeholder="Search by address">
+
+			<div class="btn-wrapper">
+					<input type="submit" class="btn btn-black" value="SEARCH">
+			</div>
+		</div>
+
+	</form>
+</section>
+
+<!-- Search result -->
+<div class="search-result" *ngIf="showResults">
+	<a class="close" (click)="close()"><span class="icon-cross">X</span></a>
+	<h1>Results showing for <span *ngIf="resultBasis.slipNumber">{{resultBasis.slipNumber}}, </span><span *ngIf="resultBasis.name">{{resultBasis.name}}, </span><span *ngIf="resultBasis.mobile">{{resultBasis.mobile}}, </span><span *ngIf="resultBasis.fatherName">{{resultBasis.fatherName}}, </span><span *ngIf="resultBasis.address">{{resultBasis.address}}</span></h1>
+	<div class="results-wrapper">
+		<div class="row" (click)="setProfileId(profile)" *ngFor="let profile of profiles">
+			<div class="profile-icon">
+				<span>{{profile.typeUser}}</span>
+			</div>
+			<div class="detail-left">
+				<p><span class="field-label">Name:</span>{{profile.name}}</p>
+				<p><span class="field-label">Father's name:</span>{{profile.fatherName}}</p>
+			</div>
+			<div class="detail-right">
+				<p><span class="field-label">Serial No:</span><span class="serial-lott">{{profile.slipNumber}}/{{numberOfPackets}}</span></p>
+
+				<p><span class="field-label">Mobile:</span>{{profile.mobile}}</p>
+			</div>
+			<div class="address" style="padding-left: 75px;">
+				<p><span class="field-label">Address</span>{{profile.address}}</p>
+			</div>
+		</div>
+
+	</div>
+
+	
+</div>

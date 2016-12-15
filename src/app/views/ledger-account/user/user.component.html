@@ -1,0 +1,76 @@
+<section class="profile">
+	<div class="row clearfix">
+		<div class="col-md-9">
+			<p class="text-center user-heading">USER LEDGER ACCOUNT FORM</p>
+		</div>
+		<div class="col-md-3 profile-number">
+			<p><span>LEDGER ID:</span><span class="serial-lott">LD-{{profiles?.ledgerid}}</span></p>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Personal info</h2>
+		<div class="clearfix">
+			<div class="col-50">
+				<p><span class="field-label">Name:</span>{{profiles?.name}}</p>
+				<p><span class="field-label">Father's name:</span>{{profiles?.fathersName}}</p>
+			</div>
+			<div class="col-50">
+				<p><span class="field-label">Mobile:</span>{{profiles?.mobile}}</p>
+				<p><span class="field-label">Address:</span>{{profiles?.address}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Transaction Details</h2>
+		<form class="form-horizontal user-ledger-form" [formGroup]="createLedgerForm">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 debit-box">
+					<p class="col-xs-12 text-center"><strong>DEBIT INFO</strong></p>
+					<div class="col-xs-12">
+						<div class="input-boxes" *ngFor="let transaction of debitArray">
+							<input type="text" formControlName="amount" placeholder="Amount" value="{{transaction.amount}}" [attr.disabled]="transaction.amount" (blur)="validityAmt($event)">
+							<input type="text" formControlName="reason" placeholder="Reason" value="{{transaction.reason}}" [attr.disabled]="transaction.reason" (blur)="validityReason($event)" >
+						</div>
+					</div>
+					<div class="col-xs-12 btn-wrapper">
+						<input type="button" class="btn btn-black" value="+" (click)="addTransactionEntry('debit')">
+					</div>
+					<div class="col-xs-12">
+						<div class="input-boxes">
+							<input type="number" name="debit-amount" placeholder="Amount" value="{{debitAmount}}" disabled>
+							<input type="text" name="total" value="TOTAL" disabled>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 credit-box">
+					<p class="col-xs-12 text-center"><strong>CREDIT INFO</strong></p>
+					<div class="col-xs-12">
+						<div class="input-boxes" *ngFor="let transaction of creditArray">
+							<input type="text" formControlName="amount" placeholder="Amount" value="{{transaction.amount}}" [attr.disabled]="transaction.amount" (blur)="validityAmt($event)" ngNumber>
+							<input type="text" formControlName="reason" placeholder="Reason" value="{{transaction.reason}}" [attr.disabled]="transaction.reason" (blur)="validityReason($event)">
+						</div>
+					</div>
+					<div class="col-xs-12 btn-wrapper">
+						<input type="button" class="btn btn-black" value="+" (click)="addTransactionEntry('credit')">
+					</div>
+					<div class="col-xs-12">
+						<div class="input-boxes">
+							<input type="number" name="credit-amount" placeholder="Amount" value="{{creditAmount}}" disabled>
+							<input type="text" name="total" value="TOTAL" disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="row" *ngIf="showMsg">
+			<p class="col-xs-12 text-center">
+				{{responseMessage}}
+			</p>
+		</div>
+		<div class="row complete-transaction" *ngIf="onComplete">
+			<p class="col-xs-12 text-center">
+				Transaction Completed.
+			</p>
+		</div>
+	</div>
+</section>

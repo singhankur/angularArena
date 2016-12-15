@@ -1,0 +1,33 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<h4 class="col-xs-10 modal-title" id="myModalLabel">DELETE USER</h4>
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"  (click)="gotoDashboardAccount()"><span aria-hidden="true">&times;</span></button>
+	    	</div>
+	    	<div class="modal-body">
+	        	<section class="create-form delete-user">
+		        	<form class="form-horizontal" [formGroup]="createTransactionForm" (ngSubmit)="submitForm($event)" *ngIf="!showMsg">
+		        		<div class="form-group">
+		        			<label for="listOfUser" class="control-label"></label>
+						    <div class="col-xs-12 col-sm-6 user-list">
+						    	<select class="form-control" id="listOfUser" formControlName="listOfUser" placeholder="List of user" required>
+									<option *ngFor="let list of userLists" value="{{list}}">{{list}}</option>
+								</select>
+						    </div>
+						    <div class="col-xs-12 col-sm-5">
+								<input type="submit" class="btn btn-black" value="DELETE">
+							</div>
+						</div>
+		        	</form>
+					<div *ngIf="showMsg">
+						<p class="align-center">
+							{{responseMessage}}
+						</p>
+					</div>
+				</section>
+	    	</div>
+	    	<div class="modal-footer footer-line"></div>
+    	</div>
+	</div>
+</div>

@@ -1,0 +1,81 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<h4 class="col-xs-10 modal-title" id="myModalLabel">NEW KISAN FORM</h4>
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close" routerLink="/home"><span aria-hidden="true">&times;</span></button>
+	    	</div>
+	    	<div class="modal-body">
+	        	<section class="create-form">
+		        	<form class="form-horizontal" [formGroup]="createKisanForm" *ngIf="!showMsg" (ngSubmit)="submitForm()">
+		        		<div class="form-group">
+		        			<label for="serialNumber" class="col-xs-12 col-sm-3 control-label">SERIAL NUMBER</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="serialNumber" formControlName="slipNumber" required ngNumber>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="kisanName" class="col-xs-12 col-sm-3 control-label">NAME</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="kisanName" formControlName="name" required  ngText>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="kisanFatherName" class="col-xs-12 col-sm-3 control-label">FATHER's NAME</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="kisanFatherName" formControlName="fatherName" required ngText>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="address" class="col-xs-12 col-sm-3 control-label">ADDRESS</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="address" formControlName="address" required>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="kisanPhone" class="col-xs-12 col-sm-3 control-label">MOBILE</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" minlength="10" maxlength="10" class="form-control" id="kisanPhone" formControlName="mobile" ngNumber>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="noOfPackets" class="col-xs-12 col-sm-3 control-label">NO. OF PACKETS</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="noOfPackets" formControlName="noOfPacket" required ngNumber>
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="lotNumber" class="col-xs-12 col-sm-3 control-label">LOTT NUMBER</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="lotNumber" formControlName="lotNumber">
+						    </div>
+						</div>
+						<div class="form-group">
+		        			<label for="typeOfPotato" class="col-xs-12 col-sm-3 control-label">TYPE OF POTATO</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<select class="form-control" id="typeOfPotato" formControlName="typeOfPotato" placeholder="Type of potato" required>
+									<option *ngFor="let color of potatoColors" value="{{color}}">{{color}}</option>
+								</select>
+						    </div>
+						</div>
+						<div class="col-sm-offset-3 checkbox padding-left-10">
+						  <label for="dropPriceSettled">
+						    <input type="checkbox" id="dropPriceSettled" formControlName="dropPriceSettled" value="">
+						    <strong>Down price settled</strong>
+						  </label>
+						</div>
+						<div class="col-xs-12 btn-wrapper">
+							<input type="submit" class="btn btn-black" value="CREATE KISAN">
+						</div>
+		        	</form>
+					<div *ngIf="showMsg">
+						<p class="align-center">
+							{{responseMessage}}
+						</p>
+					</div>
+				</section>
+	    	</div>
+	    	<div class="modal-footer footer-line"></div>
+    	</div>
+	</div>
+</div>

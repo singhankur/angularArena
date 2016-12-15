@@ -1,0 +1,26 @@
+<section class="profile">
+	<div class="row graph">
+		<div class="col-xs-12 graph-header">
+			<h3 class="col-xs-11"><strong>GRAPH</strong></h3>
+			<button type="button" class="col-xs-1 close" (click)="gotoDashboardAccount()"><span aria-hidden="true">&times;</span></button>
+		</div>
+		<div class="col-xs-12 graph-body">
+			<div class="col-xs-12 chart-wrapper">
+				<p>Packet Graph <input type="date" #date name="chart1-date" (blur)=createDateCall(date.value,date.name)></p>
+				<div id="columnchart_values1"></div>
+			</div>
+			<div class="col-xs-12 chart-wrapper">
+				<p>Packet Graph For a Day<input type="date" #date1 name="chart2-date" (blur)=createDateCall(date1.value,date1.name)></p>
+				<div id="columnchart_values2"></div>
+			</div>
+			<div class="col-xs-12 chart-wrapper">
+				<p>Revenue Graph<input type="date" #date2 name="chart3-date" (blur)=createDateCall(date2.value,date2.name)></p>
+				<div id="columnchart_values3"></div>
+			</div>
+			<div class="col-xs-12 chart-wrapper">
+				<p>Revenue Graph For a Day<input type="date" #date3 name="chart4-date" (blur)=createDateCall(date3.value,date3.name)></p>
+				<div id="columnchart_values4"></div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,103 @@
+<search-user (idUpdated)="fetchProfile($event)" *ngIf="searchForm"></search-user>
+
+
+<section class="profile" *ngIf="showProfile">
+	<div *ngFor="let profile of profiles">
+		<div class="row clearfix">
+			<div class="col-md-9">
+				<div class="profile-icon">
+					<span >{{profile.profileType}}</span>
+				</div>
+				<p class="text-center user-heading">USER ACCOUNT</p>
+			</div>
+			<div class="col-md-3 profile-number">
+				<p><span>Serial Number:</span><span class="serial-lott">{{profile.slipNumber}}/{{profile.noOfPacket}}</span></p>
+			</div>
+		</div>
+		<div class="row">
+			<h2>Personal info</h2>
+			<div class="clearfix">
+				<div class="col-50">
+					<p><span class="field-label">Name:</span>{{profile.name}}</p>
+					<p><span class="field-label">Father's name:</span>{{profile.fatherName}}</p>
+				</div>
+				<div class="col-50">
+					<p><span class="field-label">Mobile:</span>{{profile.mobile}}</p>
+					<p><span class="field-label">Address:</span>{{profile.address}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<h2>Packet Details</h2>
+			<div class="clearfix">
+				<div class="col-50">
+					<p><span class="field-label">Date:</span>{{profile.createdDate}}</p>
+					<p><span class="field-label">Type Of Potato:</span>{{profile.typeOfPotato}}</p>
+					<p><span class="field-label">Drop Price Per Packet:</span>{{priceConfig.dropPrice}}</p>
+					<p><span class="field-label">Storage Price Per Packet:</span>{{priceConfig.storagePrice}}</p>
+
+				</div>
+				<div class="col-50">
+					<p><span class="field-label">Number Of Packets:</span>{{profile.noOfPacket}}</p>
+					<p><span class="field-label">Lott Number:</span>{{profile.lotNumber}}</p>
+					<p><span class="field-label">Total Drop Price:</span>{{priceConfig.totalDropPrice}}</p>
+					<p><span class="field-label">Drop Price Settled:</span>{{dropPricesettled ? "Yes" : "No"}}</p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Transaction Details</h2>
+		<table>
+		  <tr>
+			<th style="padding-left: 20px;">Date</th>
+			<th>Total Packets</th>
+			<th>Total Amount</th>
+			<th>Amount Paid</th>
+			<th>Total Down Price</th>
+			<th>Total Weight</th>
+			<th>Total Weight Amount</th>
+			<th style="padding-left: 8px;">Buyer</th>
+		  </tr>
+		  <tr *ngFor="let transaction of transactions;let i = index " class="text-center">
+		    <td>{{transaction.createdDate}}</td>
+		    <td>{{transaction.packetTaken}}</td>
+		    <td>{{transaction.totalAmount}}</td>
+		    <td>{{transaction.amountPaid}}</td>
+		    <td>{{transaction.totalDropPrice}}</td>
+		    <td>{{transaction.totalWeight}}</td>
+		    <td>{{transaction.totalWeightAmount}}</td>
+		    <td>{{transaction.buyer}}</td>
+		  </tr>
+		  <tr style="outline: 1px solid #efefef;">
+			<th class="text-center"></th>
+			<th class="text-center">{{grandTotalTransaction.packetTaken}}</th>
+			<th class="text-center">{{grandTotalTransaction.totalAmount}}</th>
+			<th class="text-center">{{grandTotalTransaction.amountPaid}}</th> 
+			<th class="text-center">{{grandTotalTransaction.totalDropPrice}}</th>
+			<th class="text-center">{{grandTotalTransaction.totalWeight}}</th>
+			<th class="text-center">{{grandTotalTransaction.totalWeightAmount}}</th>
+			<th class="text-center"></th>
+		  </tr>
+		</table>
+		<div class="summary">
+			<p>Remaining Packets: <span>{{total_remaining_packets}}</span></p>
+			<!-- <p>Total Amount Due: <span>{{total_amount_due}}</span></p> -->
+		</div>
+	</div>
+	<div *ngIf="(total_remaining_packets == 0 && total_amount_due == 0)" class="text-center">
+		<p style="color: green;">Transaction Complete</p>
+	</div>
+	<div class="row">
+		<div class="btn-wrapper">
+			<a (click)="showTransactionHimselfForm()" class="btn btn-black">Taken By Himself</a>
+			<a (click)="showTransactionVyapariForm()" class="btn btn-black">Sold To Vyapari</a>
+		</div>
+	</div>
+</section>
+<div class="transaction-form-wrapper" *ngIf="!showProfile">
+	<transaction-himself *ngIf="transactionHimselfForm" [profile]="profile" (idUpdated)="fetchProfile($event)"></transaction-himself>
+	<transaction-vyapari *ngIf="transactionVyapariForm" [profile]="profile" (idUpdated)="fetchProfile($event)"></transaction-vyapari>
+</div> 
+

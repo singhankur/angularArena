@@ -1,0 +1,43 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" *ngIf="showDashboard">
+	<div class="modal-dialog modal-md" id="dashboardModal" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<!-- <h4 class="col-xs-10 modal-title" id="myModalLabel">SEARCH</h4> -->
+	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close" routerLink="/home"><span aria-hidden="true">&times;</span></button>
+	    	</div>
+	    	<div class="modal-body">
+	        	<section class="dashboard">
+	        		<p class="text-center"><strong>ADMIN DASHBOARD</strong></p>
+	        		<div class="row">
+						<div class="btn-wrapper">
+							<a (click)="showDeleteUser=false;showGetAdminConstant=false;showSetAdminConstant=false;showYearWisePattern=false;showDashboard=false" class="col-xs-12 col-sm-5 btn btn-black">CREATE USER</a>
+							<a (click)="showDeleteUser = true;showGetAdminConstant=false;showSetAdminConstant=false;showYearWisePattern=false;showDashboard=false" class="col-xs-12 col-sm-5 btn btn-black">DELETE USER</a>
+							<a (click)="showGetAdminConstant = true;showDeleteUser=false;showSetAdminConstant=false;showYearWisePattern=false;showDashboard=false" class="col-xs-12 col-sm-5 btn btn-black">GET ADMIN CONSTANT</a>
+							<a (click)="showSetAdminConstant = true;showDeleteUser=false;showGetAdminConstant=false;showYearWisePattern=false;showDashboard=false" class="col-xs-12 col-sm-5 btn btn-black">SET ADMIN CONSTANT</a>
+						</div>
+						<div class="col-xs-12 padding-top-7 dashboard-content" *ngIf="_packetDetails">
+							<p><strong>TOTAL PACKETS IN FOR TODAY: </strong><span>{{_packetDetails.PacketInToday}}</span></p>
+							<p><strong>TOTAL PACKETS IN STORAGE: </strong><span>{{_packetDetails.PacketInColdStorage}}</span></p>
+							<p><strong>TOTAL PACKETS OUT FOR TODAY: </strong><span>{{_packetDetails.PacketOut}}</span></p>
+							<p><strong>TOTAL PACKETS REMAINING IN STORAGE: </strong><span>{{_packetDetails.RemainingPacketinClodStorage}}</span></p>
+							<p><strong>TOTAL REVENUE FOR TODAY: </strong><span>{{_packetDetails.TodayRevenue}}</span></p>
+						</div>
+						<div class="btn-wrapper">
+							<a (click)="showYearWisePattern = true;showDeleteUser=false;showGetAdminConstant=false;showSetAdminConstant=false;showDashboard=false" class="btn btn-black">SEE YEAR WISE PATTERN</a>
+						</div>
+					</div>
+				</section>
+	    	</div>
+	    	<div class="modal-footer footer-line"></div>
+    	</div>
+	</div>
+</div>
+
+<div class="dashboard-form-wrapper" *ngIf="!showDashboard">
+	<app-create-user *ngIf="!showDeleteUser && !showGetAdminConstant && !showSetAdminConstant && !showYearWisePattern" (showDashboard)="eventFromChild($event)"></app-create-user>
+	<app-delete-user *ngIf="showDeleteUser" (showDashboard)="eventFromChild($event)"></app-delete-user>
+	<app-get-admin-constant *ngIf="showGetAdminConstant" (showDashboard)="eventFromChild($event)"></app-get-admin-constant>
+	<app-set-admin-constant *ngIf="showSetAdminConstant" (showDashboard)="eventFromChild($event)"></app-set-admin-constant>
+	
+	<app-year-wise-pattern *ngIf="showYearWisePattern" (showDashboard)="eventFromChild($event)"></app-year-wise-pattern>
+</div>

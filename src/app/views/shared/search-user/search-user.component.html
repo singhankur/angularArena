@@ -1,0 +1,27 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	<div class="modal-dialog modal-md" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        	<!-- <h4 class="col-xs-10 modal-title" id="myModalLabel">SEARCH</h4> -->
+	        	<a class="close" (click)="goToHome()"><span aria-hidden="true">&times;</span></a>
+	    	</div>
+	    	<div class="modal-body">
+	        	<section class="search-user-account">
+		        	<form class="search-account" [formGroup]="searchUserAccountForm" (ngSubmit)="submitForm($event)">
+		        		<div class="form-group">
+		        			<label for="serialNumber" class="col-xs-12 col-sm-3 control-label">SERIAL NUMBER</label>
+						    <div class="col-xs-12 col-sm-9">
+						    	<input type="text" class="form-control" id="serialNumber" formControlName="slipNumber" required ngNumber>
+						    </div>
+						</div>
+						<div class="col-xs-12 btn-wrapper">
+							<input type="submit" class="btn btn-black" value="SEARCH">
+						</div>
+		        	</form>
+				</section>
+				<!-- <p *ngIf="profileExists">User doesn't exist.</p> -->
+	    	</div>
+	    	<div class="modal-footer footer-line"></div>
+    	</div>
+	</div>
+</div>

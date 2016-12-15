@@ -1,0 +1,57 @@
+<div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" >
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- <h4 class="col-xs-10 modal-title" id="myModalLabel">SEARCH</h4> -->
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" routerLink="/home"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<section class="ledger-account">
+					<p class="text-center"><strong>LEDGER ACCOUNT MANAGEMENT</strong></p>
+					<div class="row">
+						<div class="btn-wrapper">
+							<a (click)="goToCreateLedger()" class="col-xs-11 btn btn-black">CREATE LEDGER ACCOUNT</a>
+							<a (click)="goToSearchLedgerAccount()" class="col-xs-11 btn btn-black">SEARCH FOR LEDGER ACCOUNT</a>
+						</div>
+						<div class="col-xs-12 margin-top-20">
+							<p class="text-center padding-bottom-20"><strong>GO TO LEDGER ACCOUNT</strong></p>
+							<div class="col-xs-12 col-sm-4 padding-top-7">
+								<p>ENTER THE LEDGER ID: </p>
+							</div>
+							<div class="col-xs-12 col-sm-8">
+								<form class="form-horizontal" [formGroup]="createTransactionForm" (ngSubmit)="submitForm($event);searchLedger=false">
+									<div class="col-xs-3 input-box">
+										<div class="form-group">
+											<label for="ledgerIDPrefix" class="col-xs-12 control-label hidden">LEDGER ID PREFIX</label>
+											<div class="col-xs-12">
+												<input type="text" class="form-control" id="ledgerIDPrefix" formControlName="ledgerIDPrefix" required disabled="true">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-5 input-box">
+										<div class="form-group">
+											<label for="ledgerId" class="col-xs-12 control-label hidden">LEDGER ID</label>
+											<div class="col-xs-12">
+												<input type="number" maxlength="6" class="form-control" id="ledgerId" formControlName="ledgerId" required>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<input type="submit" class="btn btn-black" value="GO">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="modal-footer footer-line"></div>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="dashboard-form-wrapper" *ngIf="!showLedgerAcc">
+	<app-create-ledger-account *ngIf="!searchLedger" (showLedgerAcc)="eventFromChild($event)"></app-create-ledger-account>
+	<app-search-ledger-account *ngIf="searchLedger" (showLedgerAcc)="eventFromChild($event)"></app-search-ledger-account>
+</div> -->
+ 
